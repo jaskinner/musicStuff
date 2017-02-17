@@ -4,11 +4,63 @@
   <meta charset="utf-8">
   <title>Musicshare</title>
   <base href="/">
-
+  <link href="//cdn.muicss.com/mui-0.9.9/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="//cdn.muicss.com/mui-0.9.9/js/mui.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <app-root>Loading...</app-root>
+  <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+  <script>
+    jQuery(function($) {
+      var $bodyEl = $('body'),
+        $sidedrawerEl = $('#sidedrawer');
+
+
+      function showSidedrawer() {
+        // show overlay
+        var options = {
+          onclose: function() {
+            $sidedrawerEl
+              .removeClass('active')
+              .appendTo(document.body);
+          }
+        };
+
+        var $overlayEl = $(mui.overlay('on', options));
+
+        // show element
+        $sidedrawerEl.appendTo($overlayEl);
+        setTimeout(function() {
+          $sidedrawerEl.addClass('active');
+        }, 20);
+      }
+
+
+      function hideSidedrawer() {
+        $bodyEl.toggleClass('hide-sidedrawer');
+      }
+
+
+      $('.js-show-sidedrawer').on('click', showSidedrawer);
+      $('.js-hide-sidedrawer').on('click', hideSidedrawer);
+
+
+      var $titleEls = $('strong', $sidedrawerEl);
+
+      $titleEls
+        .next()
+        .hide();
+
+      $titleEls.on('click', function() {
+        $(this).next().slideToggle(200);
+      });
+    });
+  </script>
 </body>
 </html>
