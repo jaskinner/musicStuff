@@ -1,0 +1,9 @@
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+    Dropdown
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+    <li *ngFor="let user of users"><a routerLink="/user/{{user.id}}">{{user.name}}</a></li>
+  </ul>
+</div>
